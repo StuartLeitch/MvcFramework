@@ -79,7 +79,14 @@
     <Compile Include="DeleporterHelpers\SelfHostSeleniumExample.cs" />
     <Compile Include="DeleporterHelpers\SelfHostSeleniumSampleTestBase.cs" />
     <Compile Include="DeleporterHelpers\TidyupUtils.cs" />
+    <Compile Include="HomeControllerTest.cs" />
+    <Compile Include="Pages\AccountLoginPage.cs" />
+    <Compile Include="Pages\AccountRegisterPage.cs" />
+    <Compile Include="Pages\HomePage.cs" />
+    <Compile Include="Pages\LayoutPage.cs" />
+    <Compile Include="Pages\PageBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -87,6 +94,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="chromedriver.exe" />
     <Content Include="SeleniumServerJar\selenium-server-standalone-2.15.0.jar" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
