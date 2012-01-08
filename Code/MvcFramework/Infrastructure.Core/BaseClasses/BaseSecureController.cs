@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Web.Security;
 using Infrastructure.Core.BaseClasses;
 using Infrastructure.Core.Membership;
 
@@ -8,16 +7,9 @@ namespace System.Web.Mvc
     [Authorize]
     public abstract class BaseSecureController : BaseController
     {
-        public IWrappedUser WrappedUser
-        {
-            get
-            {
-                return this.EventBroker.WrappedUser;
-            }
-        }
+        public IWrappedUser WrappedUser { get { return this.EventBroker.WrappedUser; } }
 
-        protected override void SetEventBrokerUser()
-        {
+        protected override void SetEventBrokerUser() {
             // Set User so that Repositories and Services can have access to user
             // Needs to be a delegate because the Membership Provider is not available at this point in the request lifecycle.
             this._eventBroker.SetFunctionToGetWrappedUser(this.GetWrappedUser);

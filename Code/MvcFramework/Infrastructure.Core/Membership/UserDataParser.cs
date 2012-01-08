@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Principal;
-using System.Text;
 
 namespace Infrastructure.Core.Membership
 {
-    public class UserDataParser 
+    public class UserDataParser
     {
         private enum UserDataItem
         {
@@ -14,8 +11,8 @@ namespace Infrastructure.Core.Membership
             FriendlyName = 1,
             Email = 2,
         }
-        public WrappedUser Decoder(string userData, string[] roles)
-        {
+
+        public WrappedUser Decoder(string userData, string[] roles) {
             var parsedData = userData.Split('|');
 
             int userId;
@@ -27,11 +24,9 @@ namespace Infrastructure.Core.Membership
             return wrappedUser;
         }
 
-        public string Encode(WrappedUser wrappedUser)
-        {
+        public string Encode(WrappedUser wrappedUser) {
             var userData = String.Format("{0}|{1}|{2}", wrappedUser.UserId, wrappedUser.FriendlyName, wrappedUser.Email);
             return userData;
         }
-
     }
 }

@@ -89,7 +89,6 @@
     <Compile Include="BaseClasses\BaseGeneralRepository.cs" />
     <Compile Include="BaseClasses\BaseSecureController.cs" />
     <Compile Include="BaseClasses\BaseService.cs" />
-    <Compile Include="BaseClasses\IDomainReadonlyWrapperBase.cs" />
     <Compile Include="BaseClasses\EventBrokerHelper.cs" />
     <Compile Include="BaseClasses\IDomainContextBase.cs" />
     <Compile Include="BaseClasses\IStandardEntity.cs" />

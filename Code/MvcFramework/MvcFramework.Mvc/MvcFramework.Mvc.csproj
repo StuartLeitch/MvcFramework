@@ -373,6 +373,7 @@
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -433,6 +434,7 @@
     <Content Include="Views\Shared\EditorTemplates\Bool.cshtml" />
     <Content Include="Web.Staging.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Account\LogOn.cshtml" />
