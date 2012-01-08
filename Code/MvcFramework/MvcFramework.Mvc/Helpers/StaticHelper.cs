@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using TecCvar.Biz.Services.Interfaces;
+using MvcFramework.Biz.Services.Interfaces;
 using MvcFramework.Biz.ViewModels;
 
 namespace MvcFramework.Mvc.Helpers

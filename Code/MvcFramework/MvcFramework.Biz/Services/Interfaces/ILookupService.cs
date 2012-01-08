@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using MvcFramework.Biz.ViewModels;
 
-namespace TecCvar.Biz.Services.Interfaces
+namespace MvcFramework.Biz.Services.Interfaces
 {
     public interface ILookupService
     {

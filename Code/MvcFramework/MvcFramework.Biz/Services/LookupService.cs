@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using Infrastructure.Core;
-using TecCvar.Biz.Services.Interfaces;
 using MvcFramework.Biz.Data;
 using MvcFramework.Biz.Properties;
+using MvcFramework.Biz.Services.Interfaces;
 using MvcFramework.Biz.ViewModels;
 
-namespace TecCvar.Biz.Services
+namespace MvcFramework.Biz.Services
 {
 
     public class LookupService : ILookupService
@@ -29,7 +29,7 @@ namespace TecCvar.Biz.Services
                 return this._cacheService.GetItem(
                     LookupCacheKey,
                     Settings.Default.LookupCacheAbsoluteExpiration,
-                    GetLookups);
+                    this.GetLookups);
             }
         }
 
