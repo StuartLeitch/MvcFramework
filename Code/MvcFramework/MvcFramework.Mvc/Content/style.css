@@ -1,0 +1,382 @@
+﻿ body {
+  background: url("/content/bg.jpg") repeat-x fixed 0 0 #133346;
+     color: #333333;
+}
+
+h2 {
+    margin-bottom: 0;
+}
+
+h3 {
+    clear: both;
+}
+
+h4 {
+    font-weight: bold;
+}
+
+.append-bottom {
+  margin-bottom: 0.5em;
+}
+
+.css_right {
+    float: right;
+}
+
+#masthead {
+  background: url(http://www.tecinc.com/images/header.gif) no-repeat 0 0;
+  height: 41px;
+}
+
+#masthead h1 {
+  color: #ffffff;
+  font-size: 28px;
+  margin-left: 120px;
+}
+
+#masthead #logindisplay {
+  color: White;
+  float: right;
+  text-align: right;
+}
+
+#masthead #logindisplay a {
+  color: #ffffff;
+}
+
+#page {
+  font-size: 0.7em;
+  margin: 0 auto 0;
+  width: 958px;
+}
+
+ #logindisplay p {
+  margin-bottom: 0;
+}
+
+#navbar {
+  background: url("http://www.tecinc.com/images/navBack.gif") no-repeat 0 0;
+  height: 25px;
+  overflow: hidden;
+  padding: 15px 0 75px 91px;
+}
+
+#navbar ul {
+  font-size: 15px;
+  line-height: 1;
+  width: 100%;
+}
+
+#navbar ul li {
+  float: left;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+#navbar ul li a {
+  color: #01214F;
+  display: block;
+  font-weight: bold;
+  padding: 0.75em 0.6em;
+  position: relative;
+  text-decoration: none;
+}
+
+.homecontent {
+  background: #FFFFFF;
+  float: left;
+  padding: 0 15px 15px 15px;
+  width: 920px;
+}
+
+.ui-icon-container {
+  padding: 4px;
+}
+
+.info {
+  /* position: absolute;*/
+  background-color: #CCFFCC;
+  border-bottom: 4px solid #FFCC66;
+  border-bottom-color: #006600;
+  border-top: 1px solid #FFCC66;
+  border-top-color: #006600;
+  color: #339933;
+  cursor: pointer;
+  font-family: helvetica;
+  font-size: 1.1em;
+  font-weight: bold;
+  padding: 6px;
+  text-align: center;
+  width: 100%;
+}
+
+.warning {
+  background-color: #FFFF99;
+  border-bottom: 4px solid #FFCC66;
+  border-bottom-color: #CC9900;
+  border-top: 1px solid #FFCC66;
+  border-top-color: #CC9900;
+  color: #663300;
+  cursor: pointer;
+  font-family: helvetica;
+  font-size: 0.9em;
+  font-weight: bold;
+  padding: 6px;
+  text-align: center;
+}
+
+.error {
+  background-color: #FFCC99;
+  border-bottom: 4px solid #FFCC66;
+  border-bottom-color: #800000;
+  border-top: 1px solid #FFCC66;
+  border-top-color: #800000;
+  color: #990000;
+  cursor: pointer;
+  font-family: helvetica;
+  font-size: 1.1em;
+  font-weight: bold;
+  padding: 4px;
+  text-align: center;
+}
+
+select {
+  margin-top: 0;
+}
+
+.button-add {
+  background: url("/Content/images/add.png") no-repeat 0 0;
+}
+
+.button-edit {
+  background: url("/Content/images/edit.png") no-repeat 0 0;
+}
+
+.button-edit-multi {
+  background: url("/Content/images/edit-multi.png") no-repeat 0 0;
+}
+
+.button-delete {
+  background: url("/Content/images/delete.png") no-repeat 0 0;
+}
+
+.button-complete {
+  background: url("/Content/images/complete.png") no-repeat 0 0;
+}
+
+.button-add, .button-edit, .button-delete, .button-complete, .button-edit-multi {
+  border: none;
+  height: 32px;
+  width: 32px;
+}
+
+.hidden {
+  display: none;
+}
+
+fieldset {
+    clear: both;
+    margin-top: 12px;
+}
+
+fieldset.no-border {
+    border: none;
+    padding-top: 0;
+}
+
+label {
+  clear: both;
+  display: block;
+}
+
+label.inline {
+  clear: left;
+  display: block;
+  float: left;
+  width: 110px;
+}
+
+ select {
+  border: 1px solid #CCCCCC;
+  float: left;
+  margin-bottom: 12px;
+  width: 250px;
+}
+
+input[type=text],
+input[type=password] {
+  float: left;
+  margin-bottom: 12px !important;
+  margin-top: 0;
+  padding: 2px;
+  width: 245px
+}
+
+
+input[type=checkbox] {
+  float: left;
+  margin-bottom: 12px;
+}
+
+input[type=submit] {
+    clear: left;
+    float: left;
+    margin-bottom: 12px;
+}
+
+input.hasDatepicker {
+    width: 120px;
+}
+
+.start-end-date {
+    float: left;
+    width: 870px;
+}
+
+.start-end-date label {
+  clear: none;
+  float: left;
+}
+
+.start-end-date input {
+  clear: none;
+  float: left;
+  margin-right: 20px;
+}
+
+.yesno {
+    margin-bottom: 12px;
+}
+
+.checkbox {
+  float: left;
+  margin: 0 5px 0 0;
+}
+
+.checkbox-label {
+  margin: 6px 0 8px 0;
+}
+
+  textarea {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  height: 50px;
+  margin: 0 0 12px;
+  width: 870px;
+}
+
+table {
+    margin-bottom: 0;
+}
+
+fieldset table span 
+{
+    display: block;
+    float: left;
+    width: 125px;   
+}
+
+fieldset table tr td {
+    vertical-align: top;
+}
+
+fieldset table td p {
+    float: left;
+    width: 250px;
+}
+
+.dataTables_wrapper .ui-toolbar {
+    padding: 5px;
+}
+
+.dataTables_wrapper #visits_length select {
+    float: none;
+    width: 50px;
+    margin-bottom: 0;
+}
+
+.dataTables_wrapper #visits_filter input[type="text"] {
+    float: none;
+    width: 150px;
+    margin-bottom: 0;
+}
+
+.spares {
+  border: 1px solid #CCCCCC;
+  padding: 0 1.4em 0;
+}
+
+.note {
+    clear: both;
+}
+
+.buttons {
+    border: 1px solid #CCCCCC;
+    clear: both;
+    float: left;
+    text-align: center;
+    width: 100%;
+}
+
+.buttons input 
+{
+    clear: none;
+    float: none;
+    margin: 15px 10px;
+    width: 100px;
+}
+
+  /* Styles for validation helpers - from Default style.css when generating new ASP.Net MVC project (but tweaked) -----------------------------------------------------------*/
+.field-validation-error {
+    color: #ff0000;
+    display: block;
+    float: left;
+    line-height: 22px;
+    margin-bottom: 12px;
+    margin-left: 2px;
+}
+
+.field-validation-valid {
+  display: none;
+}
+
+.input-validation-error {
+  background-color: #ffeeee !important;
+  border: 1px solid #ff0000 !important;
+  margin-bottom: 0 !important;
+}
+
+.validation-summary-errors {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+.validation-summary-valid {
+  display: none;
+}
+
+.read-only {
+  border: 1px solid #CCCCCC;
+  margin-bottom: 10px;
+  padding: 6px;
+}
+
+.image-equipment {
+  max-width: 350px;
+  max-width: 350px;
+}
+
+.highlightinput input {
+  background: #ff0 !important;
+  background-color: #ff0 !important;
+}
+
+.highlightinput select {
+  background: #ff0 !important;
+  background-color: #ff0 !important;
+}
+
+.highlightinput textarea {
+  background: #ff0 !important;
+  background-color: #ff0 !important;
+}

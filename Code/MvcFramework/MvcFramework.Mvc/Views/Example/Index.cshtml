@@ -1,0 +1,155 @@
+﻿@model Template.Models.ExampleViewModel 
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2 class="full">@ViewBag.Message</h2>
+
+<section class="one-fourth">
+    <h2>This is an h2</h2>
+    <h3>This is an h3</h3>
+    <h4>This is an h4</h4>
+    <h5>This is an h5</h5>
+    <h6>This is an h6</h6>
+</section>
+<section class="half">
+    <p>Chambray iphone pariatur, aesthetic fap echo park sartorial hoodie voluptate gentrify mcsweeney's next level retro laborum mustache. 
+        Velit <a href="/">raw denim duis</a>, locavore shoreditch pariatur labore quis ad tofu. Esse shoreditch banksy, sunt chambray veniam incididunt. 
+        Eiusmod labore fugiat blog, cred pitchfork wes anderson anim wayfarers brooklyn yr nesciunt. Lo-fi vice synth exercitation excepteur. 
+        Aute proident ullamco, deserunt four loko cliche adipisicing. Four loko photo booth nulla, single-origin coffee irony in gentrify ex.
+    </p>
+    
+</section>
+<section class="one-fourth">
+    <ul>
+        <li>List item one</li>
+        <li>List item two</li>
+        <li>List item three</li>
+        <li>List item four</li>
+        <li>List item five</li>
+    </ul>
+</section>
+<div class="clearfix"></div>
+<hr />
+<section class="half">
+    @using (Html.BeginForm())
+    {
+        <form>
+            <fieldset class="above">
+                <legend>Example form</legend>
+                <ol>
+                    <li>
+                        @Html.LabelFor(m => m.StartDate)
+                        @Html.EditorFor(m => m.StartDate)
+                        @Html.ValidationMessageFor(m => m.StartDate)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.EndDate)
+                        @Html.EditorFor(m => m.EndDate)
+                        @Html.ValidationMessageFor(m => m.EndDate)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.Name)
+                        @Html.EditorFor(m => m.Name)
+                        @Html.ValidationMessageFor(m => m.Name)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.Email)
+                        @Html.EditorFor(m => m.Email)
+                        @Html.ValidationMessageFor(m => m.Email)
+                    </li>
+                    <li>   
+                        @Html.LabelFor(m => m.Phone)
+                        @Html.EditorFor(m => m.Phone)  
+                        @Html.ValidationMessageFor(m => m.Phone)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.URL)
+                        @Html.EditorFor(m => m.URL) 
+                        @Html.ValidationMessageFor(m => m.URL)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.Description)
+                        @Html.EditorFor(m => m.Description)
+                        @Html.ValidationMessageFor(m => m.Description)
+                    </li>
+                </ol>
+                 <input type="submit" name="send" value="Send it">
+            </fieldset>
+        </form>
+    }
+</section>
+<section class="half">
+     @using (Html.BeginForm())
+    {
+        <form>
+            <fieldset>
+                <legend>Example form</legend>
+                <ol>
+                    <li>
+                        @Html.LabelFor(m => m.StartDate)
+                        @Html.EditorFor(m => m.StartDate)
+                        @Html.ValidationMessageFor(m => m.StartDate)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.EndDate)
+                        @Html.EditorFor(m => m.EndDate)
+                        @Html.ValidationMessageFor(m => m.EndDate)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.Name)
+                        @Html.EditorFor(m => m.Name)
+                        @Html.ValidationMessageFor(m => m.Name)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.Email)
+                        @Html.EditorFor(m => m.Email)
+                        @Html.ValidationMessageFor(m => m.Email)
+                    </li>
+                    <li>   
+                        @Html.LabelFor(m => m.URL)
+                        @Html.EditorFor(m => m.URL) 
+                        @Html.ValidationMessageFor(m => m.URL)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.Phone)
+                        @Html.EditorFor(m => m.Phone)  
+                        @Html.ValidationMessageFor(m => m.Phone)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.Description)
+                        @Html.EditorFor(m => m.Description)
+                        @Html.ValidationMessageFor(m => m.Description)
+                    </li>
+                </ol>
+                <input type="submit" name="send" value="Send it">
+            </fieldset>
+        </form>
+    }
+    
+    <hr />
+
+    <table cellspacing="0">
+        <tr>
+            <th>Header</th>
+            <th>Header</th>
+            <th>Header</th>
+        </tr>
+        <tr>
+            <td>Data</td>
+            <td>Data</td>
+            <td>Data</td>
+        </tr>
+        <tr class="odd">
+            <td>Data</td>
+            <td>Data</td>
+            <td>Data</td>
+        </tr>
+        <tr>
+            <td>Data</td>
+            <td>Data</td>
+            <td>Data</td>
+        </tr>
+    </table>
+</section>
+<div class="clearfix"></div>

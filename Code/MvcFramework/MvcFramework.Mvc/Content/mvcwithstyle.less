@@ -1,0 +1,527 @@
+﻿/* 
+ * Primary styles
+ * 
+ */
+
+@import "MvcWithStyle/elements.less";
+
+@bodycolor: #2E2E2E;
+@accentcolor: #990311;
+@linkhovercolor: #3b5998;
+
+@darkestcolor: #2E2E2E;
+@darkcolor: #5E5E5E;
+
+@lightestcolor: #EFEFEF;
+@lightcolor: #A6A6A6;
+
+@footertextcolor: #ffffff;
+
+body {
+    color: @bodycolor;
+    .sans-serif(normal, 0.813em);
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    line-height: 20px;
+	margin: 0 0 15px 0;
+}
+
+a, a:visited {
+    color: @accentcolor;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+     color: @linkhovercolor;
+}
+
+h1, h2, h3, 
+h4, h5, h6 {
+    color: @darkestcolor;
+    margin: 0;
+    padding-bottom: 0;
+}
+
+h1 {
+    font-size: 2em; 
+}
+
+h2 {
+    font-size: 1.8em;
+	margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 1.5em;
+	margin-bottom:10px;
+}
+
+h4 {
+    color: @accentcolor;
+	font-size: 1.25em;
+	margin-bottom:5px;
+}
+
+h5 {
+    font-size: 1em;
+	margin-bottom:5px;
+}
+
+h6 {
+	font-size:0.938em;
+	text-transform: uppercase;
+}
+
+hr {
+	clear: both;
+	margin: 15px 0;
+}
+
+#main > hr {
+	margin: 15px 10px;
+}
+
+/* Main Layout */
+
+#container {
+	.gradient-vertical(@lightestcolor, @lightcolor, 0%, 76%); 
+}
+
+#main {
+    .box-shadow(0 1px 5px #2E2E2E);
+	background:#ffffff;
+    margin: 0 auto;
+	padding: 20px 15px;
+	width: 930px;
+}
+
+footer {
+	.gradient-vertical(@darkcolor, @darkestcolor);
+    clear: both;
+    color:@footertextcolor;
+	font-size: 0.9em;
+	height: 80px;
+}
+
+footer section {
+	margin: auto;
+    padding-top: 8px;
+    width: 915px;
+}
+
+footer a {
+	color:@footertextcolor;
+}
+
+footer #socialmedia {
+	float:right;
+	width: auto;
+}
+
+footer #socialmedia .facebook,
+footer #socialmedia .twitter,
+footer #socialmedia .rss {
+	background-image: url("MvcWithStyle/images/mwsicons.png");
+	background-repeat: no-repeat;
+	color:transparent;
+	display:block;
+	float:left;
+	height:30px;
+	margin-left: 10px;
+	overflow:hidden;
+    width: 30px;
+}
+
+footer #socialmedia .facebook {
+	background-position: 0 -60px;
+}
+
+footer #socialmedia .twitter {
+	background-position: 0 -90px;
+}
+
+footer #socialmedia .rss {
+	background-position: 0 -120px;
+}
+
+footer #contactinfo {
+	float:left;
+	width: auto;
+}
+
+footer #contactinfo > div {
+	float:left;
+}
+
+footer #contactinfo .adr {
+	border-left:1px solid @footertextcolor;
+	margin-left:10px;
+	padding-left:10px;
+}
+
+/* Site Header */
+
+header {
+    background:#ffffff;
+    height: 110px;
+	border-top: 3px solid @darkestcolor;
+}
+
+header section {
+	margin: auto;
+    width: 960px;
+}
+
+header hgroup {
+    float: left;
+    width: 70%;
+}
+
+header hgroup img {
+    float: left;
+    margin: 15px 15px 15px 25px;
+}
+
+header h1 {
+    .serif(normal, 3.55em);
+    margin-top: 10px;
+}
+
+header hgroup h2 {
+    font-size: 1.235em;
+    font-weight: normal;
+    margin: 0;
+}
+
+/* Login */
+header #logindisplay {
+    float: right;
+    padding: 20px 25px 0 0;
+}
+
+header #logindisplay ul {
+    list-style: none;
+    margin: 50px 0 0;
+    padding: 0;
+}
+
+header #logindisplay ul li {
+    display: inline;
+}
+
+header #logindisplay a {
+	.fancybutton(@darkcolor, @darkestcolor);
+	color:#ffffff;
+	font-size: 11px;
+    font-weight: bold;
+    line-height: 10px;
+    margin-left: 5px;
+    padding: 6px 8px;
+	text-transform: uppercase;
+}
+
+/* Menu */
+
+nav {
+    .gradient-vertical(@darkcolor, @darkestcolor, 25%, 100%);
+	border-top: 3px solid @darkestcolor;
+}
+
+nav ul#menu {
+	height: 34px;
+	margin: auto;
+    padding:0;
+	width: 960px;
+}
+
+nav ul#menu li:first-child {
+    border-left: none;
+}
+
+nav ul#menu li {
+    display: inline;
+}
+
+nav ul#menu li a {
+    color: #FFFFFF;
+    .font-shorthand(bold, 14px, 32px);
+    padding: 8px 25px;
+}
+
+nav ul#menu li.active a,
+nav ul#menu li a:hover {
+	.gradient-vertical(@lightestcolor, @lightcolor, 0%, 76%); 
+	border-bottom: 3px solid;
+	color: @accentcolor;
+	padding: 7px 25px 6px;
+}
+
+/* Popups */
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br, .ui-corner-tr, .ui-corner-left, .ui-corner-bl  {
+    .border-radius(0px);
+    .sans-serif();
+	padding:0;
+}
+
+.ui-widget-header {
+    border:none;    
+    color:#ffffff;
+	font-weight: bold;
+    .gradient-vertical(@darkestcolor, @darkcolor, 25%, 100%);
+}
+.ui-widget-header .ui-icon {
+    background: url("MvcWithStyle/images/mwsicons.png") 0 -32px no-repeat;
+}
+
+.ui-widget-content a {
+	color:@accentcolor;
+}
+
+/* Tables */
+
+table {
+    width: 100%;
+}
+
+table th, table td {
+    padding: 4px 5px;
+}
+
+table th {
+    .gradient-vertical(@darkcolor, @darkestcolor);
+    color: #FFFFFF;
+    font-size: 12px;
+    text-align: left;
+}
+
+table tr:nth-child(odd) {
+    background:@lightestcolor;
+}
+
+/* Forms */
+
+form fieldset legend {
+    display:none;
+}
+
+form fieldset ol {
+    list-style: none;
+    margin: 0 0 5px;
+    padding-left: 0;
+}
+
+form fieldset ol li {
+    padding-bottom: 12px;
+}
+
+form fieldset.above ol li {
+    padding-bottom: 8px;
+}
+
+form fieldset ol li label {
+    cursor: pointer;
+    display: block;
+    float: left;
+    .font-shorthand(bold, 12px, 22px);
+    width: 110px;
+}
+
+form fieldset.above ol li label {
+	clear: both;
+	float: none;
+}
+
+:-moz-placeholder {
+    color:    #999; /* Force FF placeholder text to render like Chrome*/
+}
+
+fieldset li.checkbox {
+    height: 20px;
+}
+    
+fieldset li.checkbox label {
+    width: auto;
+}
+
+fieldset li.checkbox input {
+    display: block;
+    float: left;
+    margin-right: 5px;
+    margin-top: 5px;
+}    
+
+form fieldset.show {
+    border: 1px solid #CCCCCC;
+    padding: 0 10px;
+}
+
+form fieldset.show legend {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0 8px;
+    text-transform: uppercase;
+}
+
+form input[type=submit] {
+     .formbutton();
+}
+
+
+/* Info and Errors */  
+.message-info {
+    border: solid 1px;
+    clear: both;
+    padding: 10px 20px;
+}
+
+.message-error {
+    clear: both;
+    color: red;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+}
+
+.message-success {
+    color: #7ac0da;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+}
+
+.success {
+    color: #7ac0da;
+}
+
+.error {
+    color: red;
+}
+
+/* Validation Helpers */
+.field-validation-error {
+    background:url(MvcWithStyle/images/mwsicons.png) no-repeat 0 0;
+    font-size: 11px;
+    font-weight: bold;
+	height:15px;
+    margin: 5px;
+    position: absolute;
+	text-align:center;
+	width: 15px;
+}
+
+.field-validation-error > span {
+	display:none !important;
+	margin-left:18px;
+}
+
+.field-validation-error:hover > span {
+	background:url(MvcWithStyle/images/validationarrow.png) no-repeat center top #2e2e2e;
+    color:#ffffff;
+	display: block !important;
+    margin-left: -174px;
+    margin-top: 18px;
+    padding: 20px 10px 10px;
+    position: absolute;
+    width: 150px;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input[type="text"].input-validation-error,
+input[type="password"].input-validation-error {
+    .box-shadow(0 0 3px #D30217);
+	.roundedcorners(2px);
+	border: 1px solid #FA5263;
+	padding: 2px;
+}
+
+.validation-summary-errors {
+    color: red;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/* MISC */
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+::-moz-selection { background: @accentcolor; color: #fff; text-shadow: none; }
+::selection { background: @accentcolor; color: #fff; text-shadow: none; }
+
+/* Legacy Styles */
+body > div.page header {
+	height:135px;
+}
+
+body > div.page header #title {
+	
+	height: 54px;
+	margin: 0 auto;
+    width: 960px;
+}
+
+body > div.page header #title h1 {
+	background:url(MvcWithStyle/images/mvcwithstyle.png) 10px center no-repeat;
+	float:left;
+	height: 80px;
+    padding: 10px 10px 10px 100px;
+}
+
+body > div.page header #logindisplay {
+	color: #FFFFFF;
+	float: none;
+    margin: 0 auto;
+	padding-bottom: 10px;
+    padding-top: 10px;
+	text-align: right;
+    width: 960px;
+}
+
+body > div.page header nav {
+
+}
+
+form fieldset .editor-label label {
+    .font-shorthand(bold, 12px, 22px);
+    clear:left;
+	cursor: pointer;
+	display: block;
+    float: left;
+    width: 110px;
+}
+
+form fieldset .editor-label label[for="RememberMe"]{
+	clear: none;
+    line-height: 15px;
+    margin-left: 5px;
+    width: auto;
+}
+
+form fieldset .editor-label input#RememberMe {
+	clear:left;
+	float:left;
+}
+
+form fieldset .editor-label label,
+form fieldset .editor-field input {
+    margin-bottom: 12px;
+}
+
+form fieldset p {
+	clear:both;
+}

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-2.0" enableLocalization="true">
+  <mvcSiteMapNode title="Home" controller="Home" action="Index" changeFrequency="Always" updatePriority="Normal">
+    <!--<mvcSiteMapNode title="PDF Reports" controller="Report" action="Index"  />
+    <mvcSiteMapNode title="Excel Reports" controller="Report" action="Excel"  />
+    <mvcSiteMapNode title="AMI Import" controller="Facility" action="Upload"/>
+    <mvcSiteMapNode title="Manage Installers" controller="Installer" action="Index"/>
+    <mvcSiteMapNode title="Manage Users" area="MvcMembership" controller="UserAdministration" action="Index"/>-->
+
+  </mvcSiteMapNode>
+</mvcSiteMap>

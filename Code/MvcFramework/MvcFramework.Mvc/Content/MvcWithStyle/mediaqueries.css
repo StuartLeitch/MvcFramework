@@ -1,0 +1,217 @@
+﻿/* 
+
+Media Queries
+
+*/
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-device-width : 240px) and (max-device-width : 480px) {
+    #container {width: 480px;}        
+    #main {width: 460px;}        
+    nav ul#menu, header section {width: 480px;}
+    
+    body {
+        font-size: 0.75em;
+    }
+    header {
+        height: auto;
+    }
+    header hgroup 
+    {
+        float: none;
+        font-size: 0.78em;
+        width: 100%;
+    }
+    header hgroup h1 {
+        font-size: 2.7em;
+        margin-left: 10px;
+    }
+    header hgroup h2 {
+        margin-left: 10px;
+    }
+    header hgroup img {
+        height: 52px;
+        margin: 4px 12px;
+    }
+    header #logindisplay 
+    {
+        height: 30px;
+        padding-left: 7px;
+        padding-top: 8px;
+    }    
+    #main {
+        padding: 10px;
+    }
+     nav ul#menu {
+         font-size: 0.5em;
+     }
+    nav ul#menu li.active {
+        display: none;
+    }
+    nav ul#menu li a {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    header #logindisplay {
+        clear: both;
+        float: none;
+    }
+    header #logindisplay ul 
+    {
+        margin: 0;
+    }
+    
+    .ui-dialog {
+        width: 320px;
+    }
+    
+    .full, .half, .one-third, .two-thirds, .one-fourth, .three-fourths, .one-fifth, .two-fifths, .three-fifths, .four-fifths, 
+    .one-sixth,.two-sixths,.three-sixths,.four-sixths,.five-sixths,.one-seventh,.two-sevenths,.three-sevenths,.four-sevenths,.five-sevenths,.six-sevenths,
+    .one-eighth,.two-eighths,.three-eighths,.four-eighths,.five-eighths,.six-eighths,.seven-eighths,.one-ninth,.two-ninths,.three-ninths,.four-ninths,.five-ninths,.six-ninths, .seven-ninths,.eight-ninths,   
+    .one-tenth,.two-tenths,.three-tenths,.four-tenths,.five-tenths,.six-tenths, .seven-tenths,.eight-tenths, .nine-tenths,
+    .one-eleventh,.two-elevenths,.three-elevenths,.four-elevenths,.five-elevenths,.six-elevenths, .seven-elevenths,.eight-elevenths, .nine-elevenths, .ten-elevenths,
+    .one-twelfth,.two-twelfths,.three-twelfths,.four-twelfths,.five-twelfths,.six-twelfths, .seven-twelfths,.eight-twelfths, .nine-twelfths, .ten-twelfths,.eleven-twelfths 
+    {
+        float: none;
+        padding: 0;
+        width: 100%;
+    }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-device-width : 320px) {
+    #container {width: 320px;}
+    #main {width: 300px;}
+    nav ul#menu, header section {width: 320px;}
+    
+}
+
+@media only screen and (max-device-width : 240px) {
+    #container {width: 240px;}
+    #main {width: 220px;}
+    nav ul#menu, header section {width: 240px;}
+    nav ul#menu li { display: block;}
+}
+
+
+@media only screen and (max-device-width : 640px) and (orientation : landscape)
+{
+    #container {width: 640px;}
+    #main {width: 620px;}
+    nav ul#menu, header section {width: 640px;}
+    body {
+        font-size: 0.75em;
+    }
+    header {
+        height: auto;
+    }
+    header hgroup 
+    {
+        float: none;
+        font-size: 0.78em;
+        width: 100%;
+    }
+    header hgroup h1 {
+        font-size: 2.7em;
+    }
+    header hgroup img {
+        height: 52px;
+        margin: 4px 12px;
+    }
+    header #logindisplay 
+    {
+        height: 30px;
+        padding-left: 7px;
+        padding-top: 8px;
+    }    
+    #main {
+        padding: 10px;
+    }
+     nav ul#menu {
+         font-size: 0.5em;
+     }
+    nav ul#menu li.active {
+        display: none;
+    }
+    nav ul#menu li a {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    header #logindisplay {
+        clear: both;
+        float: none;
+    }
+    header #logindisplay ul 
+    {
+        margin: 0;
+    }
+}
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+   
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    body {
+        font-size: 0.74em;
+    }
+    #container {
+        width: 768px;
+    }
+    header {
+        height: 95px;
+    }
+    header hgroup {
+        width: 75%;
+    }
+    header hgroup img {
+        height: 64px;
+    }
+    header #logindisplay {
+        padding-top: 0;
+    }
+    #main {
+        width: 738px;
+    }
+    nav ul#menu, header section {
+         width: 768px;
+    }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) {
+/* Styles */
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 and high pixel ratio devices ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } /* Black prints faster: h5bp.com/s */
+  a, a:visited { text-decoration: underline; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }  /* Don't show links for images, or javascript/internal links */
+  pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+  thead { display: table-header-group; } /* h5bp.com/t */
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page { margin: 0.5cm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}

@@ -1,0 +1,1 @@
+﻿Create regular Views that match the names in Mailer
