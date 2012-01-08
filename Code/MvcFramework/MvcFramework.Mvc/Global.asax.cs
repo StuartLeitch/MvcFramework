@@ -68,5 +68,22 @@ namespace MvcFramework.Mvc
             SD.Tools.OrmProfiler.Interceptor.InterceptorCore.Initialize("MvcFramework");
 #endif
         }
+
+        protected void Application_AuthenticateRequest(Object sender, EventArgs e)
+        {
+            var authCookie = this.Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie == null)
+                return;
+
+            var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+
+            var userDataParser = new UserDataParser();
+            // TODO Stuart: Figure out what to do with roles
+            var wrappedUser = userDataParser.Decoder(authTicket.UserData, new string[0]);
+
+            this.Context.User = wrappedUser;
+            Thread.CurrentPrincipal = wrappedUser;
+        }
+
     }
 }

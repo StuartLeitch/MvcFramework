@@ -26,23 +26,10 @@ namespace System.Web.Mvc
         /// <summary>
         ///   Keep Private, provide access via EventBroker so it can be easily mocked.
         /// </summary>
-        private WrappedUser GetWrappedUser()
-        {
-            var authCookie = this.Request.Cookies[FormsAuthentication.FormsCookieName];
-            if (authCookie == null || !this.User.Identity.IsAuthenticated)
-                throw new InvalidOperationException("Attempted to get User, but User is not logged in.");
+        private WrappedUser GetWrappedUser() {
+            var wrappedUser = this.HttpContext.User as WrappedUser;
 
-            var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
-
-            var parsedUserData = authTicket.UserData.Split('|');
-
-            int userId;
-            if (parsedUserData.Length != 2 || !int.TryParse(parsedUserData[0], out userId))
-                throw new InvalidOperationException("Attempted to get User, but data is corrupted.");
-
-            var user = new WrappedUser(this.User) { UserId = userId, Email = parsedUserData[1] };
-
-            return user;
+            return wrappedUser;
         }
     }
 }

@@ -7,46 +7,28 @@ using MvcFramework.Biz.ViewModels;
 
 namespace MvcFramework.Biz.Services
 {
-
     public class LookupService : ILookupService
     {
-        #region "Regular"
-
         private const string LookupCacheKey = "LookupCacheKey";
         private readonly CacheService<LookupModel> _cacheService;
         private readonly IGeneralRepository _repo;
 
-        public LookupService(IGeneralRepository repo)
-        {
+        public LookupService(IGeneralRepository repo) {
             this._repo = repo;
             this._cacheService = new CacheService<LookupModel>();
         }
 
-        public LookupModel Lookups
-        {
-            get
-            {
-                return this._cacheService.GetItem(
-                    LookupCacheKey,
-                    Settings.Default.LookupCacheAbsoluteExpiration,
-                    this.GetLookups);
-            }
-        }
+        public LookupModel Lookups { get { return this._cacheService.GetItem(LookupCacheKey, Settings.Default.LookupCacheAbsoluteExpiration, this.GetLookups); } }
 
-        public void ClearLookupCache()
-        {
+        public void ClearLookupCache() {
             this._cacheService.ClearItem(LookupCacheKey);
         }
 
-        #endregion
-
-        private LookupModel GetLookups()
-        {
+        private LookupModel GetLookups() {
             var lookupModel = new LookupModel
-                {
-                    // Example
-                   // Affiliates = this._repo.Db.Affiliates.ToDictionary(x => x.AffiliateId, x => x.Name),
-                };
+            { // Example
+                    // Affiliates = this._repo.Db.Affiliates.ToDictionary(x => x.AffiliateId, x => x.Name),
+            };
 
             return lookupModel;
         }

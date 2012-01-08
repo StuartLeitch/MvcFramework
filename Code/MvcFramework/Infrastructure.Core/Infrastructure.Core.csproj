@@ -107,6 +107,7 @@
     <Compile Include="General\DisplayUserException.cs" />
     <Compile Include="General\ExtensionMethods.cs" />
     <Compile Include="General\QueryableExtensions.cs" />
+    <Compile Include="Membership\UserDataParser.cs" />
     <Compile Include="Membership\WrappedUser.cs" />
     <Compile Include="Membership\IWrappedUser.cs" />
     <Compile Include="MvcValidation\NotBothPopulatedAttribute.cs" />
