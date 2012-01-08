@@ -82,7 +82,6 @@
     <Compile Include="HomeControllerTest.cs" />
     <Compile Include="Pages\AccountLoginPage.cs" />
     <Compile Include="Pages\AccountRegisterPage.cs" />
-    <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\LayoutPage.cs" />
     <Compile Include="Pages\PageBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
