@@ -4,12 +4,14 @@ using System.Data.Objects;
 using System.Linq;
 using Infrastructure.Core.EventBroker;
 using Infrastructure.Core.EventBroker.Interfaces;
-using Ninject;
+using Common.Logging;
 
 namespace Infrastructure.Core.BaseClasses
 {
     public abstract class BaseGeneralRepository : IUseEventBroker
     {
+        ILog _log = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Only needed during testing - DomainContext will have brokerFactory injected by Ninject
         /// </summary>
@@ -51,60 +53,40 @@ namespace Infrastructure.Core.BaseClasses
         {
             var result = false;
 
-            // No point going further if we know we'll have validation issues.
-            if (!this.Validate())
+            if (!this.ValidateAndPropogateFailures())
             {
-                this.DomainContext.EventBroker.RaiseValidationFailedEvent();
                 return false;
             }
 
             try
             {
-                // IMPROVE:  Do we have value for number of rows updated?
                 this.DomainContext.SaveChanges();
                 result = true;
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                this.AddFailure(new ValidationFailure
-                    {
-                        ErrorType = ErrorType.Concurrency,
-                        Message =
-                                "The record you are attempting to save has been modified by another user.  Please refresh and try again."
-                    });
+            catch (DbUpdateConcurrencyException) {
+                this.AddFailure(
+                        new ValidationFailure(
+                                "The record you are attempting to save has been modified by another user.  Please refresh and try again."));
             }
             catch (Exception ex)
             {
-                // IMPROVE:  Log
-                this.RaiseValidationFailedEvent(ex.Message);
-                this.RaiseValidationFailedEvent(ex.GetBaseException().Message);
-                // this.AddFailure(new ValidationFailure { ErrorType = ErrorType.Unexpected, Exception = ex, DisplayUiWithoutKey = true});
-            }
-
-            // IMPROVE: Need to figure out if I really want to do this here all the time?!? Or do manually in controller?
-            if (this.DomainContext.EventBroker.GetFailures().Any())
-            {
-                this.DomainContext.EventBroker.RaiseValidationFailedEvent();
+                this._log.Debug("Error during database save", ex);
+                this.AddFailure(new ValidationFailure(ex));
             }
 
             return result;
         }
 
         /// <summary>
-        ///   Validates and
+        ///   Validates and adds failures to the EventBroker
         /// </summary>
-        /// <returns></returns>
-        public bool Validate()
+        /// <returns>True if no failures</returns>
+        public bool ValidateAndPropogateFailures()
         {
             var validationErrors = this.DomainContext.GetValidationErrors().ToList();
             foreach (var dbEntityValidationResult in validationErrors.SelectMany(x => x.ValidationErrors))
             {
-                this.AddFailure(new ValidationFailure
-                    {
-                        ErrorType = ErrorType.EntityFrameworkValidation,
-                        Message = dbEntityValidationResult.ErrorMessage,
-                        ModelStateKey = dbEntityValidationResult.PropertyName
-                    });
+                this.AddFailure(new ValidationFailure(dbEntityValidationResult.ErrorMessage, dbEntityValidationResult.PropertyName));
             }
 
             return !validationErrors.Any();

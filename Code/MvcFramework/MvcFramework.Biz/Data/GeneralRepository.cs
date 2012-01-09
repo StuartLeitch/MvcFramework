@@ -21,6 +21,5 @@ namespace MvcFramework.Biz.Data
                 return this._domainContext;
             }
         }
-
     }
 }

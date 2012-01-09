@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using Infrastructure.Core.EventBroker;
 using Infrastructure.Core.EventBroker.Interfaces;
-using Infrastructure.Core.Validation;
 using Ninject;
 
 namespace Infrastructure.Core.BaseClasses
@@ -15,35 +14,20 @@ namespace Infrastructure.Core.BaseClasses
     {
         protected IEventBroker _eventBroker;
 
-        public IEventBroker EventBroker
-        {
-            get
-            {
-                return this._eventBroker;
-            }
-        }
+        public IEventBroker EventBroker { get { return this._eventBroker; } }
 
-        /// <summary>
-        ///   Will be true if a ValidationFailure event has taken place or if a FlashMessage
-        ///   has been explicitly raised via FlashHelper
-        /// </summary>
         public bool HasFlashMessage
         {
-            get
-            {
-                // Only need to check for the first of each type.
-                return this.TempData[FlashHelpers.Error + "1"] != null || this.TempData[FlashHelpers.Warning + "1"] != null ||
-                       this.TempData[FlashHelpers.Info + "1"] != null;
+            get {
+                return
+                        this.EventBroker.ValidationFailures.Any(
+                                x =>
+                                x.FlashLevel == FlashLevelType.Error || x.FlashLevel == FlashLevelType.Info
+                                || x.FlashLevel == FlashLevelType.Warning);
             }
         }
 
-        protected string IpAddress
-        {
-            get
-            {
-                return this.Request.ServerVariables["REMOTE_ADDR"];
-            }
-        }
+        protected string IpAddress { get { return this.Request.ServerVariables["REMOTE_ADDR"]; } }
 
         public void AddModelStateError(string modelStateKey, string modelStateError)
         {
@@ -52,49 +36,48 @@ namespace Infrastructure.Core.BaseClasses
 
             // IMPROVE: Use Pascal case splitting to insert space when inferring the required message.
 
-            this.ModelState.AddModelError(
-                modelStateKey ?? string.Empty, modelStateError ?? string.Format("The {0} field is required", modelStateKey));
+            this.ModelState.AddModelError(modelStateKey ?? string.Empty,
+                                          modelStateError ?? string.Format("The {0} field is required", modelStateKey));
         }
 
         public void AddRule(string errorMessage)
         {
+            errorMessage.ThrowIfNull("errorMessage");
+            
             this._eventBroker.AddFailure(errorMessage);
         }
 
         /// <summary>
-        ///   Ninject will take care of setting this.  
-        ///   If not using BaseTest when testing, you can use BrokerTestFactory to create 
-        ///   an instance of BrokerTestVersion
+        ///   Ninject will take care of setting this. If not using BaseTest when testing, you can use BrokerTestFactory to create an instance of BrokerTestVersion
         /// </summary>
         [Inject]
         public void SetEventBrokerFactory(IBrokerFactory brokerFactory)
         {
             this._eventBroker = brokerFactory.GetGeneralBroker();
-
-            // Subscribe to Validation issues raised by Repositories and Services
-            this._eventBroker.ValidationFailedEvent += this.ValidationFailedEvent;
-
             this.SetEventBrokerUser();
         }
 
-        protected void AddValidationErrorToModelState(IEnumerable<ValidationFailure> validationFailures)
+        protected void AddValidationErrorToModelStateIfAppropriate(IEnumerable<ValidationFailure> validationFailures)
         {
-            foreach (
-                var validationFailure in
+            foreach (var validationFailure in
                     validationFailures.Where(
-                        x =>
-                        (!string.IsNullOrWhiteSpace(x.ModelStateKey) && !string.IsNullOrWhiteSpace(x.Message)) ||
-                        (x.DisplayUiWithoutKey) && !string.IsNullOrWhiteSpace(x.Message)))
-            {
-                this.ModelState.AddModelError(validationFailure.ModelStateKey ?? string.Empty, validationFailure.Message);
-            }
+                            x =>
+                            (!string.IsNullOrWhiteSpace(x.ModelStateKey) && !string.IsNullOrWhiteSpace(x.DisplayMessage))
+                            || (x.FlashLevel == FlashLevelType.MvcModelState) && !string.IsNullOrWhiteSpace(x.DisplayMessage)))
+                this.ModelState.AddModelError(validationFailure.ModelStateKey ?? string.Empty, validationFailure.DisplayMessage);
+        }
+
+        protected override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            this.ProcessValidationFailuresIfAny();
+            base.OnActionExecuted(filterContext);
         }
 
         /// <summary>
-        ///   If the flash helpers are displaying, they will display again if the user goes back then forward in the browser.
+        ///   If the flash helpers are displaying, they will display again if the user goes back then forward in the browser. 
         ///   Therefore when there is a flash message, instruct the browser not to cache the page.
         /// </summary>
-        /// <param name = "filterContext"></param>
+        /// <param name="filterContext"> </param>
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             if (this.HasFlashMessage)
@@ -104,65 +87,57 @@ namespace Infrastructure.Core.BaseClasses
                 this.Response.Cache.SetNoStore();
                 this.Response.AppendHeader("Pragma", "no-cache");
             }
+
+            base.OnActionExecuting(filterContext);
         }
 
         /// <summary>
-        ///   Intended to be overridden only by BaseSecureController
-        ///   Call this._eventBroker.SetFunctionToGetWrappedUser(() => FunctionToGetUserGoesHere); 
+        ///   Intended to be overridden only by BaseSecureController Call this._eventBroker.SetFunctionToGetWrappedUser(() => FunctionToGetUserGoesHere); 
         ///   in BaseSecureController to give access to user.
         /// </summary>
-        protected virtual void SetEventBrokerUser() {}
+        protected virtual void SetEventBrokerUser() { }
 
-        /// <summary>
-        ///   Is subscribed to the EventBroker validation failed event. 
-        ///   Pushes failures to the View.
-        /// </summary>
-        protected void ValidationFailedEvent(object sender, ValidationFailedEventArgs eventArgs)
+        private void FlashExceptionChain(Exception ex, string message = null)
         {
-            this.AddValidationErrorToModelState(this._eventBroker.GetFailures());
+            if (!ex.Message.Contains("inner exception"))
+                this.FlashError(!string.IsNullOrWhiteSpace(message) ? string.Format("{0} {1}", message, ex.Message) : ex.Message);
 
-            foreach (var failure in this.EventBroker.GetFailures().Where(x => x.Exception != null))
+            if (ex.InnerException != null)
+                this.FlashExceptionChain(ex.InnerException);
+        }
+
+        private void ProcessFailure(ValidationFailure failure)
+        {
+            if (failure.Exception != null)
             {
-                this.WriteExceptionToModelState(failure.Exception, 1);
+                this.FlashExceptionChain(failure.Exception, failure.DisplayMessage);
+                return;
             }
 
             // Don't display message in flash if the key is set
-            if (eventArgs.HasMessage && string.IsNullOrWhiteSpace(eventArgs.Key))
+            if (failure.HasMessage && string.IsNullOrWhiteSpace(failure.ModelStateKey))
             {
-                switch (eventArgs.FlashLevel)
+                switch (failure.FlashLevel)
                 {
-                    case ValidationFailedEventArgs.FlashLevelType.Error:
-                        this.FlashError(eventArgs.DisplayMessage);
+                    case FlashLevelType.Error:
+                        this.FlashError(failure.DisplayMessage);
                         break;
-                    case ValidationFailedEventArgs.FlashLevelType.Warning:
-                        this.FlashWarning(eventArgs.DisplayMessage);
+                    case FlashLevelType.Warning:
+                        this.FlashWarning(failure.DisplayMessage);
                         break;
-                    case ValidationFailedEventArgs.FlashLevelType.Info:
-                        this.FlashInfo(eventArgs.DisplayMessage);
+                    case FlashLevelType.Info:
+                        this.FlashInfo(failure.DisplayMessage);
                         break;
-                }
-            }
-            else
-            {
-                this.FlashError("Validation Error");
-
-                // IMPROVE: This is likely problematic.
-                // it works for partials where the validation does not match, but will display these extra messages
-                // even when the model state matches.
-                foreach (var failure in this.EventBroker.GetFailures().Where(x => !string.IsNullOrWhiteSpace(x.Message)))
-                {
-                    this.FlashError(failure.Message);
                 }
             }
         }
 
-        private void WriteExceptionToModelState(Exception ex, int indentDepth)
+        private void ProcessValidationFailuresIfAny()
         {
-            if (!ex.Message.Contains("inner exception"))
-                this.AddModelStateError("", ex.Message);
+            this.AddValidationErrorToModelStateIfAppropriate(this._eventBroker.ValidationFailures);
 
-            if (ex.InnerException != null)
-                this.WriteExceptionToModelState(ex.InnerException, indentDepth + 1);
+            foreach (var failure in this.EventBroker.ValidationFailures)
+                this.ProcessFailure(failure);
         }
     }
 }

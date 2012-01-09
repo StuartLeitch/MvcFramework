@@ -41,36 +41,5 @@ namespace Infrastructure.Core.BaseClasses
         {
             return implementsEventBroker.EventBroker.WrappedUser;
         }
-
-        /// <summary>
-        ///   Publishes Broken Rules and an option DisplayMessage to subscribers (typically BaseController) via EventBroker
-        /// </summary>
-        /// <param name = "displayMessage">Message that will Flash in the View</param>
-        [DebuggerStepThrough]
-        public static void RaiseValidationFailedEvent(this IUseEventBroker implementsEventBroker, string displayMessage = null)
-        {
-            implementsEventBroker.EventBroker.RaiseValidationFailedEvent(displayMessage);
-        }
-
-        /// <summary>
-        ///   Publishes Broken Rules and an optional DisplayMessage to subscribers (typically BaseController) via GeneralBroker
-        /// </summary>
-        /// <param name = "displayMessage">Message that will Flash in the View</param>
-        /// <param name="severity">Determines the color of message flashed to the user</param>
-        public static void RaiseValidationFailedEvent(this IUseEventBroker implementsEventBroker, string displayMessage = null, ValidationFailedEventArgs.FlashLevelType severity = ValidationFailedEventArgs.FlashLevelType.Error)
-        {
-            implementsEventBroker.EventBroker.RaiseValidationFailedEvent(displayMessage, severity);
-        }
-
-        /// <summary>
-        ///   Publishes Broken Rule as a specific failure in the ModelStateDictionary to Controller (BaseController) via GeneralBroker
-        /// </summary>
-        /// <param name="key">Name of the field to display the validation failure against</param>
-        /// <param name = "displayMessage">Message that will Flash in the View</param>
-        public static void RaiseSpecificValidationFailedEvent(this IUseEventBroker implementsEventBroker, string key, string displayMessage = null)
-        {
-            implementsEventBroker.EventBroker.RaiseSpecificValidationFailedEvent(key, displayMessage);
-        }
-
     }
 }

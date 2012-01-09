@@ -16,29 +16,18 @@ namespace Infrastructure.Core.EventBroker.Interfaces
         /// </summary>
         int DatabaseCreateUpdateDeleteUserId { get; }
 
-        event EventBroker.ValidationFailedHandler ValidationFailedEvent;
-
-        /// <summary>
-        /// Sends message to the controller which displays in view
-        /// </summary>
-        void RaiseValidationFailedEvent(string displayMessage = null, 
-                    ValidationFailedEventArgs.FlashLevelType severity = ValidationFailedEventArgs.FlashLevelType.Error);
+        ICollection<ValidationFailure> ValidationFailures { get; }
 
         void SetFunctionToGetWrappedUser(Func<IWrappedUser> functionToGetWrappedUser);
 
-        void AddFailure(ValidationFailure validationRule);
+        void AddFailure(ValidationFailure validationFailure);
 
-        void AddFailure(params ValidationFailure[] validationRules);
+        void AddFailure(params ValidationFailure[] validationFailures);
 
-        void AddFailure(IList<ValidationFailure> validationRules);
+        void AddFailure(IList<ValidationFailure> validationFailures);
 
-        void AddFailure(string errorMessage);
-
-        IList<ValidationFailure> GetFailures();
+        void AddFailure(string displayMessage);
 
         void ClearFailures();
-
-        void RaiseSpecificValidationFailedEvent(
-            string key, string displayMessage, ValidationFailedEventArgs.FlashLevelType severity = ValidationFailedEventArgs.FlashLevelType.Error);
     }
 }

@@ -27,11 +27,6 @@ namespace Infrastructure.Core.EventBroker
             this._validationFailures = new Collection<ValidationFailure>();
         }
 
-        public delegate void ValidationFailedHandler(object sender, ValidationFailedEventArgs validationFailedEventArgs);
-
-        
-        public event ValidationFailedHandler ValidationFailedEvent;
-
         public bool IsValid
         {
             get
@@ -88,7 +83,6 @@ namespace Infrastructure.Core.EventBroker
             if (!this.WrappedUser.IsInRole(role))
             {
                 this.AddFailure("You need to be in the user role " + role + " to access this functionality");
-                this.RaiseValidationFailedEvent("Insufficient Privileges!");
                 return false;
             }
 
@@ -96,9 +90,6 @@ namespace Infrastructure.Core.EventBroker
         }
 
 
-        /// <summary>
-        ///   Is publicly visible so that BaseRepository can use this to validate adapter.
-        /// </summary>
         public ICollection<ValidationFailure> ValidationFailures
         {
             get
@@ -107,27 +98,27 @@ namespace Infrastructure.Core.EventBroker
             }
         }
 
-        public void AddFailure(ValidationFailure validationRule)
+        public void AddFailure(ValidationFailure validationFailure)
         {
-            this._validationFailures.Add(validationRule);
+            this._validationFailures.Add(validationFailure);
         }
 
-        public void AddFailure(string errorMessage)
+        public void AddFailure(string displayMessage)
         {
-            this._validationFailures.Add(new ValidationFailure { Message = errorMessage });
+            this._validationFailures.Add(new ValidationFailure(displayMessage));
         }
 
-        public void AddFailure(params ValidationFailure[] validationRules)
+        public void AddFailure(params ValidationFailure[] validationFailures)
         {
-            foreach (var validationRule in validationRules)
+            foreach (var validationRule in validationFailures)
             {
                 this._validationFailures.Add(validationRule);
             }
         }
 
-        public void AddFailure(IList<ValidationFailure> validationRules)
+        public void AddFailure(IList<ValidationFailure> validationFailures)
         {
-            foreach (var validationRule in validationRules)
+            foreach (var validationRule in validationFailures)
             {
                 this._validationFailures.Add(validationRule);
             }
@@ -136,42 +127,6 @@ namespace Infrastructure.Core.EventBroker
         public void ClearFailures()
         {
             this._validationFailures.Clear();
-        }
-
-        public IList<ValidationFailure> GetFailures()
-        {
-            return this._validationFailures.ToList();
-        }
-
-        public virtual void RaiseSpecificValidationFailedEvent(
-            string key,
-            string displayMessage = null,
-            ValidationFailedEventArgs.FlashLevelType severity = ValidationFailedEventArgs.FlashLevelType.Error)
-        {
-            // It is possible that there are no subscribers if the repository is not run from a controller implementing IUseGeneralBroker.
-            if (this.ValidationFailedEvent != null)
-            {
-                this.ValidationFailedEvent(this, new ValidationFailedEventArgs(displayMessage, severity, key));
-            }
-            else
-            {
-                // IMPROVE: Log
-            }
-        }
-
-        public virtual void RaiseValidationFailedEvent(
-            string displayMessage = null,
-            ValidationFailedEventArgs.FlashLevelType severity = ValidationFailedEventArgs.FlashLevelType.Error)
-        {
-            // It is possible that there are no subscribers if the repository is not run from a controller implementing IUseGeneralBroker.
-            if (this.ValidationFailedEvent != null)
-            {
-                this.ValidationFailedEvent(this, new ValidationFailedEventArgs(displayMessage, severity));
-            }
-            else
-            {
-                // IMPROVE: Log
-            }
         }
 
         public void SetFunctionToGetWrappedUser(Func<IWrappedUser> functionToGetWrappedUser)

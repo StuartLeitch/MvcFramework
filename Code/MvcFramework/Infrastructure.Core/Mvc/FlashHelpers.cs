@@ -21,7 +21,7 @@ namespace System.Web.Mvc
                     helper.ViewContext.TempData.Where(
                             x => x.Key.StartsWith(Error) || x.Key.StartsWith(Warning) || x.Key.StartsWith(Info)).OrderBy(x => x.Key);
 
-            if (flashEntries.Count() == 0)
+            if (!flashEntries.Any())
             {
                 return string.Empty;
             }
@@ -83,6 +83,7 @@ namespace System.Web.Mvc
 
         }
 
+        // TODO Stuart: Add arguments like Deleporter
         public static void FlashError(this Controller controller, string message)
         {
 

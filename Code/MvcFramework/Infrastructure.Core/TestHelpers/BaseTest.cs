@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
-using System.Security.Principal;
 using Infrastructure.Core.EventBroker.Interfaces;
 using Infrastructure.Core.Membership;
 using Moq;
@@ -68,13 +67,11 @@ namespace Infrastructure.Core.TestHelpers
             return this.MockingKernel.Get<T>();
         }
 
-        // IMPROVE: Also test what happens when FlashHelpers fires.
-
-        protected bool ValidationEventHasFired
+        protected bool HasValidationErrors
         {
             get
             {
-                return ((BrokerTestVersion)this.Get<IBrokerFactory>().GetGeneralBroker()).ValidationEventHasFired;
+                return ((BrokerTestVersion)this.Get<IBrokerFactory>().GetGeneralBroker()).ValidationFailures.Any();
             }
         }
 

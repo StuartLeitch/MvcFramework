@@ -33,6 +33,6 @@ namespace MvcFramework.Biz.Data
         ///   Validates and
         /// </summary>
         /// <returns></returns>
-        bool Validate();
+        bool ValidateAndPropogateFailures();
     }
 }

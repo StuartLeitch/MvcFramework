@@ -123,7 +123,7 @@ namespace Infrastructure.Core
         /// Throws a DisplayUserException if null
         /// </summary>
         /// <param name="argument">object to test</param>
-        /// <param name="message">Message to be displayed to User</param>
+        /// <param name="message">DisplayMessage to be displayed to User</param>
         public static void ThrowUserExIfNull<T>(this T argument, string message) where T : class
         {
             if (argument == null)

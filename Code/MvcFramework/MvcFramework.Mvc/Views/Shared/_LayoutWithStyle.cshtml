@@ -43,79 +43,82 @@
 @RenderSection("HeadContent", false)
 </head>
 
-<body>
-    <div id="container">
-        <header role="banner">
-            <section>
-                <a href="/">
-                    <hgroup>
-                        <img src="@Url.Content("~/Content/MvcWithStyle/images/mvcwithstyle.png")"/>
-                        <h1>MVC With Style</h1>
-                        <h2>Assisting Design Challenged Developers Blunder into Awesomeness</h2>
-                    </hgroup>
-                </a> 
-                <div id="logindisplay">
-                    @Html.Partial("_LogOnPartialWithStyle")
-                </div>
-            </section>
-        </header>
-
-        <nav role="navigation">
-            <ul id="menu">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("MVC with Style Example", "Index", "Example")</li>
-                <li>@Html.ActionLink("Grid Example", "Grid", "Example")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
-            </ul>
-        </nav>
-
-        <div id="main" role="main">
-            @RenderBody()
-        </div>
-        <footer role="contentinfo">
-            <section>
-                <section id="contactinfo" class="vcard">
-                    <div class="contactdetails">
-                        <div class="org">MVC With Style</div>
-                        <div class="tel">(434) 000-0000</div>
-                        <div class="email"><a href="mailto:email@user.com">email@user.com</a></div>
-                    </div>
-                
-                    <div class="adr">
-                        <div class="street-address">Everywhere St.</div>
-                        <div class="extended-address">Suite 1</div>
-                        <span class="locality">Somewhere</span>,
-                        <span class="region">VA</span>
-                        <span class="postal-code">20000</span>
-                    </div>
-                </section>
-                <section id="socialmedia">
-                    <a href="http://www.facebook.com" class="facebook">Facebook</a>
-                    <a href="http://www.twitter.com" class="twitter">Twitter</a>
-                    <a href="/" class="rss">RSS</a>
-                </section>
-            </section>
-        </footer>
+    <body>
+    @Html.Raw(this.Html.Flash())
+    <div id="flash-container">
     </div>
-    <script>
-        $('#menu li a').each(function () {
-            if ($(this).attr('href') == '@(Request.Url.LocalPath)') {
-                $(this).parent('li').addClass('active');
-            }
-        });
-    </script>
-	
-  <!-- Change UA-XXXXX-X to be your site's ID -->
-    <script>
-        window._gaq = [['_setAccount', 'UAXXXXXXXX1'], ['_trackPageview'], ['_trackPageLoadTime']];
-        Modernizr.load({
-            load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
-        });
-    </script>
+        <div id="container">
+            <header role="banner">
+                <section>
+                    <a href="/">
+                        <hgroup>
+                            <img src="@Url.Content("~/Content/MvcWithStyle/images/mvcwithstyle.png")"/>
+                            <h1>MVC With Style</h1>
+                            <h2>Assisting Design Challenged Developers Blunder into Awesomeness</h2>
+                        </hgroup>
+                    </a> 
+                    <div id="logindisplay">
+                        @Html.Partial("_LogOnPartialWithStyle")
+                    </div>
+                </section>
+            </header>
 
-  <!--[if lt IE 7 ]>
-    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
-    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
-  <![endif]-->
-</body>
+            <nav role="navigation">
+                <ul id="menu">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("MVC with Style Example", "Index", "Example")</li>
+                    <li>@Html.ActionLink("Grid Example", "Grid", "Example")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                </ul>
+            </nav>
+
+            <div id="main" role="main">
+                @RenderBody()
+            </div>
+            <footer role="contentinfo">
+                <section>
+                    <section id="contactinfo" class="vcard">
+                        <div class="contactdetails">
+                            <div class="org">MVC With Style</div>
+                            <div class="tel">(434) 000-0000</div>
+                            <div class="email"><a href="mailto:email@user.com">email@user.com</a></div>
+                        </div>
+                
+                        <div class="adr">
+                            <div class="street-address">Everywhere St.</div>
+                            <div class="extended-address">Suite 1</div>
+                            <span class="locality">Somewhere</span>,
+                            <span class="region">VA</span>
+                            <span class="postal-code">20000</span>
+                        </div>
+                    </section>
+                    <section id="socialmedia">
+                        <a href="http://www.facebook.com" class="facebook">Facebook</a>
+                        <a href="http://www.twitter.com" class="twitter">Twitter</a>
+                        <a href="/" class="rss">RSS</a>
+                    </section>
+                </section>
+            </footer>
+        </div>
+        <script>
+            $('#menu li a').each(function () {
+                if ($(this).attr('href') == '@(Request.Url.LocalPath)') {
+                    $(this).parent('li').addClass('active');
+                }
+            });
+        </script>
+	
+        <!-- Change UA-XXXXX-X to be your site's ID -->
+        <script>
+            window._gaq = [['_setAccount', 'UAXXXXXXXX1'], ['_trackPageview'], ['_trackPageLoadTime']];
+            Modernizr.load({
+                load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+            });
+        </script>
+
+        <!--[if lt IE 7 ]>
+            <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+            <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+        <![endif]-->
+    </body>
 </html>
