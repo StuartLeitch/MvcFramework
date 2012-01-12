@@ -6,7 +6,7 @@ using DeleporterCore.SelfHosting.Servers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 
-namespace MvcFramework.IntegrationTests.DeleporterHelpers
+namespace MvcFramework.FunctionalTests.DeleporterHelpers
 {
     [TestClass]
     public class SelfHostSampleTestBase

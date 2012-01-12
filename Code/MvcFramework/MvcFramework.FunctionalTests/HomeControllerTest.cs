@@ -4,7 +4,7 @@ using DeleporterCore.Client;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 
-namespace MvcFramework.IntegrationTests
+namespace MvcFramework.FunctionalTests
 {
     [TestClass]
     public class HomeControllerTest : TestBase

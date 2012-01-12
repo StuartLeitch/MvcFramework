@@ -3,13 +3,13 @@ using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace MvcFramework.IntegrationTests.Pages
+namespace MvcFramework.FunctionalTests.Pages
 {
     public class LayoutPage : PageBase
     {
         public LayoutPage(IWebDriver driver) : base(driver)
         {
-            this.Url = @"http://localhost:4544/";
+            this.RelativeUrl = @"http://localhost:4544/";
             PageFactory.InitElements(driver, this);
         }
 

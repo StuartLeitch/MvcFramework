@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace MvcFramework.IntegrationTests.DeleporterHelpers
+namespace MvcFramework.FunctionalTests.DeleporterHelpers
 {
     public static class NinjectControllerFactoryUtils
     {

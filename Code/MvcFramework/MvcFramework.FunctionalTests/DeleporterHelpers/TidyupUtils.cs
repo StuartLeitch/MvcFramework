@@ -2,7 +2,7 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 
-namespace MvcFramework.IntegrationTests.DeleporterHelpers
+namespace MvcFramework.FunctionalTests.DeleporterHelpers
 {
     /// <summary>
     /// Since you can't usually run multiple integration tests in parallel, this approach to tidying up makes no attempt to

@@ -4,7 +4,7 @@ using DeleporterCore.Configuration;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 
-namespace MvcFramework.IntegrationTests.DeleporterHelpers
+namespace MvcFramework.FunctionalTests.DeleporterHelpers
 {
     /// <summary>
     ///   Allows a WebDriver to be shared without having
