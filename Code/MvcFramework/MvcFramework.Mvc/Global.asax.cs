@@ -5,8 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using Infrastructure.Core.Membership;
-using MvcFramework.Biz;
+using Application.Biz;
+using Application.Core.Membership;
 using SD.Tools.OrmProfiler.Interceptor;
 
 namespace MvcFramework.Mvc

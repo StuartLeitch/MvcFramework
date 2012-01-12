@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using MvcFramework.Biz.Services.Interfaces;
-using MvcFramework.Biz.ViewModels;
+using Application.Biz.Services.Interfaces;
+using Application.Biz.ViewModels;
 
 namespace MvcFramework.Mvc.Helpers
 {

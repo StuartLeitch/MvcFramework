@@ -395,13 +395,13 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure.Core\Infrastructure.Core.csproj">
-      <Project>{8B7EE7CB-ECB2-4FB3-9D7F-6834CAB9A62B}</Project>
-      <Name>Infrastructure.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MvcFramework.Biz\MvcFramework.Biz.csproj">
+    <ProjectReference Include="..\Application.Biz\Application.Biz.csproj">
       <Project>{7096626D-4E1E-4177-829A-E7F33C21DEC5}</Project>
-      <Name>MvcFramework.Biz</Name>
+      <Name>Application.Biz</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Application.Core\Application.Core.csproj">
+      <Project>{8B7EE7CB-ECB2-4FB3-9D7F-6834CAB9A62B}</Project>
+      <Name>Application.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

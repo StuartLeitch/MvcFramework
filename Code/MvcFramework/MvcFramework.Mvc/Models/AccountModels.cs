@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using Infrastructure.Core;
+using Application.Core;
 using MembershipUser = System.Web.Security.MembershipUser;
 
 namespace MvcFramework.Mvc.Models

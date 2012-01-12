@@ -3,9 +3,9 @@ using System.Drawing.Printing;
 using System.Linq;
 using System.Reflection;
 using System.Web.UI;
+using Application.Biz.Reporting;
+using Application.Biz.Services.Interfaces;
 using Microsoft.Reporting.WebForms;
-using MvcFramework.Biz.Reporting;
-using MvcFramework.Biz.Services.Interfaces;
 
 namespace MvcFramework.Mvc.WebFormReportHosts
 {

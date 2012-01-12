@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
-using MvcFramework.Biz;
+using Application.Biz;
 
 namespace MvcFramework.Mvc.Areas.Admin.Controllers
 {

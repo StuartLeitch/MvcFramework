@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using Mvc.Mailer;
 using System.Net.Mail;
-using MvcFramework.Biz.Data.EntityFramework;
 
 namespace MvcFramework.Mvc.Mailers
 { 
