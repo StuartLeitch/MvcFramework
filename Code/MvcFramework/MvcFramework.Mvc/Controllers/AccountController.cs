@@ -8,13 +8,18 @@ namespace MvcFramework.Mvc.Controllers
 {
     public class AccountController : Controller
     {
-        public IFormsAuthenticationService FormsService { get; set; }
-        public IMembershipService MembershipService { get; set; }
+        private IFormsAuthenticationService _formsService;
+        private IMembershipService _membershipService;
+
+        public AccountController(IFormsAuthenticationService formsService, IMembershipService membershipService) {
+            _formsService = formsService;
+            _membershipService = membershipService;
+        }
 
         [Authorize]
         public ActionResult ChangePassword()
         {
-            this.ViewBag.PasswordLength = this.MembershipService.MinPasswordLength;
+            this.ViewBag.PasswordLength = this._membershipService.MinPasswordLength;
             return this.View();
         }
 
@@ -24,7 +29,7 @@ namespace MvcFramework.Mvc.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                if (this.MembershipService.ChangePassword(this.User.Identity.Name, model.OldPassword, model.NewPassword))
+                if (this._membershipService.ChangePassword(this.User.Identity.Name, model.OldPassword, model.NewPassword))
                 {
                     return this.RedirectToAction("ChangePasswordSuccess");
                 }
@@ -35,7 +40,7 @@ namespace MvcFramework.Mvc.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            this.ViewBag.PasswordLength = this.MembershipService.MinPasswordLength;
+            this.ViewBag.PasswordLength = this._membershipService.MinPasswordLength;
             return this.View(model);
         }
 
@@ -50,7 +55,7 @@ namespace MvcFramework.Mvc.Controllers
 
         public ActionResult LogOff()
         {
-            this.FormsService.SignOut();
+            this._formsService.SignOut();
 
             return this.RedirectToAction("Index", "Home");
         }
@@ -74,7 +79,7 @@ namespace MvcFramework.Mvc.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                if (this.MembershipService.ValidateUser(model.UserName, model.Password))
+                if (this._membershipService.ValidateUser(model.UserName, model.Password))
                 {
                     this.LogUserIn(model.UserName, false);
                     return this.SafeRedirection(returnUrl);
@@ -99,7 +104,7 @@ namespace MvcFramework.Mvc.Controllers
 
         public ActionResult Register()
         {
-            this.ViewBag.PasswordLength = this.MembershipService.MinPasswordLength;
+            this.ViewBag.PasswordLength = this._membershipService.MinPasswordLength;
             if (this.Request.IsAjaxRequest())
             {
                 return PartialView();
@@ -114,7 +119,7 @@ namespace MvcFramework.Mvc.Controllers
             if (this.ModelState.IsValid)
             {
                 // Attempt to register the user
-                var createStatus = this.MembershipService.CreateUser(model.UserName, model.Password, model.Email);
+                var createStatus = this._membershipService.CreateUser(model.UserName, model.Password, model.Email);
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
@@ -128,22 +133,8 @@ namespace MvcFramework.Mvc.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            this.ViewBag.PasswordLength = this.MembershipService.MinPasswordLength;
+            this.ViewBag.PasswordLength = this._membershipService.MinPasswordLength;
             return this.View(model);
-        }
-
-        protected override void Initialize(RequestContext requestContext)
-        {
-            if (this.FormsService == null)
-            {
-                this.FormsService = new FormsAuthenticationService();
-            }
-            if (this.MembershipService == null)
-            {
-                this.MembershipService = new AccountMembershipService();
-            }
-
-            base.Initialize(requestContext);
         }
 
         // **************************************
@@ -152,8 +143,8 @@ namespace MvcFramework.Mvc.Controllers
 
         private void LogUserIn(string userName, bool createPersistentCookie)
         {
-            var user = this.MembershipService.GetUser(userName, false);
-            this.FormsService.SignIn(
+            var user = this._membershipService.GetUser(userName, false);
+            this._formsService.SignIn(
                 user.UserName, user.Email, int.Parse(user.ProviderUserKey.ToString()), createPersistentCookie, this.Response);
         }
 

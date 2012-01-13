@@ -1,38 +1,28 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Application.FunctionalTests.BasePages;
 using DeleporterCore.Client;
+using FrameworkTests.Pages;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 
 namespace Application.FunctionalTests
 {
     [TestClass]
-    public class HomeControllerTest : TestBase
+    public class HomePageTest : TestPageBase<HomePageModel>
     {
-        [TestMethod]
-        public void Index_MockCourses_MockWorks()
-        {
-            MockTestCourse();
-
-            this.GoHome();
-
-            var table = Driver.FindElements(By.CssSelector("table"));
-            Assert.IsTrue(table.First().Text.Contains("Test1"));
-        }
 
         [TestMethod]
-        public void Test2()
-        {
-            MockTestCourse();
-
-            this.GoHome();
-
-            var table = Driver.FindElements(By.CssSelector("table"));
-            Assert.IsTrue(table.First().Text.Contains("Test1"));
+        public void TestWelcome_Present() {
+            Assert.IsTrue(Target.Paragraph.Text.Contains("Put content here."));
         }
 
-        private static void MockTestCourse()
+
+
+        private static void MockSomething()
         {
+            var list = new Dictionary<string, int>();
+
             Deleporter.Run(() =>
                                {
                                    //var courses = new List<CourseListViewModel> { new CourseListViewModel { CourseTitle = "Test1", } };
@@ -43,9 +33,11 @@ namespace Application.FunctionalTests
                                });
         }
 
-        private void GoHome()
+
+        protected override void OnTestRunInitialize()
         {
-            Driver.Navigate().GoToUrl(ServerAppUrl);
+            Target = new HomePageModel();
+            this.Target.Navigate();
         }
     }
 }

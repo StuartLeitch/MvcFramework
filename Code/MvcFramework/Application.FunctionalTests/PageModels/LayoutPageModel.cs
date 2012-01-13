@@ -1,14 +1,21 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using Application.FunctionalTests.BasePages;
+using Application.FunctionalTests.DeleporterHelpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-namespace FrameworkTests.Pages
+namespace Application.FunctionalTests.PageModels
 {
     /// <summary>
-    ///   This class is a property on ModelBase
+    ///   This class is exposed as a property on ModelBase
     /// </summary>
-    public partial class LayoutPageModel
+    public class LayoutPageModel : PageModelBase
     {
+        public LayoutPageModel() : base("") {
+            PageFactory.InitElements(DriverFactory.Driver, this);
+        }
+
         [FindsBy(How = How.Id, Using = @"a[href=""/Home/About""]")]
         public IWebElement AboutLink { get; set; }
 
@@ -20,6 +27,10 @@ namespace FrameworkTests.Pages
 
         [FindsBy(How = How.Id, Using = "UserName")]
         public IWebElement UserName { get; set; }
+		
+        public override void Navigate() {
+            throw new InvalidOperationException("Navigate does not make sense on layout.");
+        }
 
         // TODO Stuart: IsLoggedOn
         // TODO Stuart: LogOn

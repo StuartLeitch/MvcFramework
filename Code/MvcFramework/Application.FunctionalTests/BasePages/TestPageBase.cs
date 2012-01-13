@@ -5,14 +5,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Application.FunctionalTests.BasePages
 {
     [TestClass]
-    public abstract class TestPageBase<TPageOrControllerTest> : TestBase where TPageOrControllerTest : ControllerModel, new()
+    public abstract class TestPageBase<TPageModel> : TestBase where TPageModel : PageModelBase, new()
     {
-        private TPageOrControllerTest _target;
+        private TPageModel _target;
 
-        protected TPageOrControllerTest Target {
+        protected TPageModel Target {
             get { return this._target; }
             set {
-                if (value.GetType() != typeof(TPageOrControllerTest))
+                if (value.GetType() != typeof(TPageModel))
                     throw new ArgumentException("TestPage should only be set to the type that matches TPageTestOrControllerTest");
 
                 this._target = value;

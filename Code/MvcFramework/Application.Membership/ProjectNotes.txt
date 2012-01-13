@@ -1,0 +1,7 @@
+﻿This is taken from http://efmembership.codeplex.com/ with a few minor modifications.  
+
+Intent is to keep modifications as lightweight as possible to allow pulling in new versions.
+Don't add anything to this project if possible - put additions into Infrastructure.Core
+
+Changes from original (useful when pulling in updated versions):
+	-Adjust namespaces.

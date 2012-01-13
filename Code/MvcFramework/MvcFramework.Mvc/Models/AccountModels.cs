@@ -101,16 +101,16 @@ namespace MvcFramework.Mvc.Models
         bool ValidateUser(string userName, string password);
     }
 
-    public class AccountMembershipService : IMembershipService
+    public class MembershipService : IMembershipService
     {
         private readonly MembershipProvider _provider;
 
-        public AccountMembershipService()
+        public MembershipService()
             : this(null)
         {
         }
 
-        public AccountMembershipService(MembershipProvider provider)
+        public MembershipService(MembershipProvider provider)
         {
             this._provider = provider ?? Membership.Provider;
         }

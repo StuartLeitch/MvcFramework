@@ -404,6 +404,10 @@
       <Project>{8B7EE7CB-ECB2-4FB3-9D7F-6834CAB9A62B}</Project>
       <Name>Application.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Application.Membership\Application.Membership.csproj">
+      <Project>{B789AC64-7D6C-49C2-95E8-4E7AC06A8699}</Project>
+      <Name>Application.Membership</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\SiteMap.sitemap" />

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
+using Application.FunctionalTests.PageModels;
 using DeleporterCore.Configuration;
-using FrameworkTests.Pages;
 using Application.FunctionalTests.DeleporterHelpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;

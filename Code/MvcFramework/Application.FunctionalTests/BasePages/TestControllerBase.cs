@@ -18,7 +18,7 @@ namespace Application.FunctionalTests.BasePages
         /// <summary>
         ///   Handle on the Controller being tested. Pass this into NavigateToAction. Controller is null, so it will blow up if invoked (as designed - we're not testing the controllers directly here). Purpose is to get intellisense and compile time type checking.
         /// </summary>
-        protected readonly TControllerUnderTest Controller;
+        protected readonly TControllerUnderTest Controller = null;
 
         private TControllerModel _target;
 
