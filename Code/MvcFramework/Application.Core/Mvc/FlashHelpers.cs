@@ -11,9 +11,9 @@ namespace System.Web.Mvc
     [DebuggerStepThrough]
     public static class FlashHelpers
     {
-        public const string Error = "error";
-        public const string Info = "info";
-        public const string Warning = "warning";
+        public const string Error = "flashError";
+        public const string Info = "flashInfo";
+        public const string Warning = "flashWarning";
 
         public static string Flash(this HtmlHelper helper)
         {

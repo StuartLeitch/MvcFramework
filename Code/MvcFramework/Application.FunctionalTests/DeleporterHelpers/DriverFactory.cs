@@ -20,7 +20,8 @@ namespace Application.FunctionalTests.DeleporterHelpers
         /// <returns> An instance of an IWebDriver implementation as set by DriverGenerationMethod </returns>
         public static IWebDriver Driver {
             get {
-                if (_currentDriver != null) return _currentDriver;
+                if (_currentDriver != null)
+                    return _currentDriver;
                 return _currentDriver = DriverGenerationMethod.Invoke();
             }
         }
@@ -34,18 +35,21 @@ namespace Application.FunctionalTests.DeleporterHelpers
                        ??
                        (() =>
                         new RemoteWebDriver(
-                                new Uri(string.Format("http://127.0.0.1:{0}/wd/hub",
-                                                      DeleporterConfiguration.SeleniumServerPort)),
+                                new Uri(string.Format("http://127.0.0.1:{0}/wd/hub", DeleporterConfiguration.SeleniumServerPort)),
                                 DesiredCapabilities.HtmlUnitWithJavaScript()));
             }
-            set { _driverGenerationMethod = value; }
+            set {
+                _driverGenerationMethod = value;
+                GetNewDriverInstance();
+            }
         }
 
         /// <summary>
         ///   Causes a new WebDriver to be instantiated when Driver is next called.
         /// </summary>
         public static void GetNewDriverInstance() {
-            if (_currentDriver != null) _currentDriver.Quit();
+            if (_currentDriver != null)
+                _currentDriver.Quit();
             _currentDriver = null;
         }
     }

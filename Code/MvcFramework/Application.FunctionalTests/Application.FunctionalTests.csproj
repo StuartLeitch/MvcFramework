@@ -36,11 +36,13 @@
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Deleporter">
-      <HintPath>..\packages\Deleporter.0.1.1.37886\lib\Net40\Deleporter.dll</HintPath>
+    <Reference Include="Deleporter, Version=0.1.6.27751, Culture=neutral, PublicKeyToken=4265bbe4b3365141, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Deleporter.0.1.6.27751\lib\Net40\Deleporter.dll</HintPath>
     </Reference>
-    <Reference Include="Deleporter.Client">
-      <HintPath>..\packages\Deleporter.Client.0.1.1.37886\lib\Net40\Deleporter.Client.dll</HintPath>
+    <Reference Include="Deleporter.Client, Version=0.1.6.27751, Culture=neutral, PublicKeyToken=4265bbe4b3365141, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Deleporter.Client.0.1.6.27751\lib\Net40\Deleporter.Client.dll</HintPath>
     </Reference>
     <Reference Include="FizzWare.NBuilder">
       <HintPath>..\packages\NBuilder.3.0.1.1\lib\FizzWare.NBuilder.dll</HintPath>
@@ -52,6 +54,9 @@
       <HintPath>..\packages\DotNetZip.1.9.1.8\lib\net20\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq, Version=4.0.10827.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -61,6 +66,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -69,7 +75,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="WebDev.WebHost20, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86">
       <Private>True</Private>
-      <HintPath>..\packages\Deleporter.Client.0.1.1.37886\lib\Net40\WebDev.WebHost20.dll</HintPath>
+      <HintPath>..\packages\Deleporter.Client.0.1.6.27751\lib\Net40\WebDev.WebHost20.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver, Version=2.16.0.0, Culture=neutral, PublicKeyToken=1c2bd1631853048f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -82,24 +88,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasePages\AssemblyTestInitializeAndCleanup.cs" />
-    <Compile Include="BasePages\ControllerModel.cs" />
-    <Compile Include="BasePages\ModelBase.cs" />
-    <Compile Include="BasePages\PageModelBase.cs" />
+    <Compile Include="BasePages\PageSeleniumModel.cs" />
+    <Compile Include="BasePages\SeleniumModel.cs" />
     <Compile Include="BasePages\TestBase.cs" />
-    <Compile Include="BasePages\TestControllerBase.cs" />
-    <Compile Include="BasePages\TestPageBase.cs" />
+    <Compile Include="BasePages\TestHelpers.cs" />
     <Compile Include="DeleporterHelpers\DriverFactory.cs" />
-    <Compile Include="DeleporterHelpers\NinjectControllerFactoryUtils.cs" />
+    <Compile Include="DeleporterHelpers\NinjectUtils.cs" />
     <Compile Include="DeleporterHelpers\TidyupUtils.cs" />
-    <Compile Include="HomePageNewTest.cs" />
-    <Compile Include="HomePageTest.cs" />
-    <Compile Include="PageModels\HomePageModel.cs" />
-    <Compile Include="PageModels\LayoutPageModel.cs" />
-    <Compile Include="Pages\AccountLoginPage.cs" />
-    <Compile Include="Pages\AccountRegisterPage.cs" />
-    <Compile Include="Pages\LayoutPage.cs" />
-    <Compile Include="Pages\PageBase.cs" />
+    <Compile Include="Pages\AccountLoginModel.cs" />
+    <Compile Include="Pages\AccountRegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharedModels\FlashModel.cs" />
+    <Compile Include="SharedModels\LayoutModel.cs" />
+    <Compile Include="SharedModels\ValidationModel.cs" />
+    <Compile Include="TestSetupHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -107,9 +109,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="chromedriver.exe" />
-    <Content Include="SeleniumServerJar\selenium-server-standalone-2.15.0.jar" />
+    <Content Include="SeleniumServerJar\selenium-server-standalone-2.16.1.jar" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="FunctionalityTests\" />
     <Folder Include="PageTests\" />
   </ItemGroup>
   <ItemGroup>

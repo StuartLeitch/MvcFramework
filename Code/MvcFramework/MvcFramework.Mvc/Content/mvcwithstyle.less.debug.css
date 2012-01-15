@@ -138,13 +138,13 @@ footer #socialmedia .facebook, footer #socialmedia .twitter, footer #socialmedia
   width: 30px;
 }
 footer #socialmedia .facebook {
-  background-position: 0 -60px;
+  background-position: 0 -48px;
 }
 footer #socialmedia .twitter {
-  background-position: 0 -90px;
+  background-position: 0 -78px;
 }
 footer #socialmedia .rss {
-  background-position: 0 -120px;
+  background-position: 0 -108px;
 }
 footer #contactinfo {
   float: left;

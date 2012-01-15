@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Web.Mvc;
 using DeleporterCore.Client;
 using DeleporterCore.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -13,18 +16,14 @@ namespace Application.FunctionalTests.BasePages
     [TestClass]
     public abstract class TestBase
     {
-        private const string ServerAppBaseUrl = "http://localhost";
-
-        /// <summary>
-        ///   The URL for the base of the application ie. http://localhost:8080/
-        /// </summary>
-        public static string ServerAppUrl { get { return ServerAppBaseUrl + ":" + DeleporterConfiguration.WebHostPort + "/"; } }
-
         ///<summary>
         ///  Gets or sets the test context which provides information about and functionality for the current test run.
         ///</summary>
         public TestContext TestContext { get; set; }
 
+        /// <summary>
+        /// Provided for convenience.... typically access via Target.
+        /// </summary>
         protected static IWebDriver Driver { get { return DriverFactory.Driver; } }
 
         [ClassCleanup]
@@ -48,9 +47,6 @@ namespace Application.FunctionalTests.BasePages
             this.OnTestRunInitialize();
         }
 
-        /// <summary>
-        ///   Instantiate TestPage here. Selenium.Support seems to have issues when PageFactory.InitElements is called via generics. Manual workaround here. Implementation like this.Target = new SomethingControllerModel(); Area of friction to resolve. (Selenium Support Page Object chokes if created via Reflection.
-        /// </summary>
         protected abstract void OnTestRunInitialize();
     }
 }

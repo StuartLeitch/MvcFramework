@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Application.Core;
+using Application.Core.Membership;
 using MembershipUser = System.Web.Security.MembershipUser;
 
 namespace MvcFramework.Mvc.Models
@@ -226,7 +227,7 @@ namespace MvcFramework.Mvc.Models
             userName.ThrowIfNullOrEmpty("userName");
             userId.ThrowIfNonPositive("userId");
 
-            var userData = String.Format("{0}|{1}", userId, email);
+            var userData = UserDataParser.Encode(userId, userName, email);
             this.SetAuthTicket(userName, userData, response);
         }
 

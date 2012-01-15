@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Application.Core.Membership
 {
-    public class UserDataParser
+    public static class UserDataParser
     {
         private enum UserDataItem
         {
@@ -12,7 +12,7 @@ namespace Application.Core.Membership
             Email = 2,
         }
 
-        public WrappedUser Decoder(string userData, string[] roles) {
+        public static WrappedUser Decode(string userData, string[] roles) {
             var parsedData = userData.Split('|');
 
             int userId;
@@ -24,8 +24,8 @@ namespace Application.Core.Membership
             return wrappedUser;
         }
 
-        public string Encode(WrappedUser wrappedUser) {
-            var userData = String.Format("{0}|{1}|{2}", wrappedUser.UserId, wrappedUser.FriendlyName, wrappedUser.Email);
+        public static string Encode(int userId, string friendlyName, string email) {
+            var userData = String.Format("{0}|{1}|{2}", userId, friendlyName, email);
             return userData;
         }
     }

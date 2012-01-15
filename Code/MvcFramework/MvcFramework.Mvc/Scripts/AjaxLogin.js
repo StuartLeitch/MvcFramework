@@ -68,7 +68,7 @@ $(function () {
                         modal: true,
                         resizable: true,
                         draggable: true,
-                        width: link.data('dialog-width') || 290
+                        width: link.data('dialog-width') || 320
                     })
                     .find('form') // Attach logic on forms
                         .submit(formSubmitHandler)

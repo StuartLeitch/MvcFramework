@@ -36,9 +36,8 @@ namespace MvcFramework.Mvc
 
             var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
 
-            var userDataParser = new UserDataParser();
             // TODO Stuart: Figure out what to do with roles
-            var wrappedUser = userDataParser.Decoder(authTicket.UserData, new string[0]);
+            var wrappedUser = UserDataParser.Decode(authTicket.UserData, new string[0]);
 
             this.Context.User = wrappedUser;
             Thread.CurrentPrincipal = wrappedUser;
