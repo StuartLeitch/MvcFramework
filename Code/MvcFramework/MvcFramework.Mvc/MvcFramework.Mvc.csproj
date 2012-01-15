@@ -218,6 +218,8 @@
     <Compile Include="Mailers\Mailer.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ExampleViewModel.cs" />
+    <Compile Include="Models\FormsAuthenticationService.cs" />
+    <Compile Include="Models\MembershipService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
