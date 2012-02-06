@@ -116,6 +116,7 @@
     <Compile Include="MvcValidation\NotEqualToAttribute.cs" />
     <Compile Include="MvcValidation\RequiredIfAttribute.cs" />
     <Compile Include="MvcValidation\RequiredIfPopulatedAttribute.cs" />
+    <Compile Include="Mvc\MultiButtonAttribute.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

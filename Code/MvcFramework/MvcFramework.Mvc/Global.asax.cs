@@ -70,6 +70,11 @@ namespace MvcFramework.Mvc
             // Don't want to run in production
             InterceptorCore.Initialize("MvcFramework");
 #endif
+
+            // If using CustomMembershipProvider, use property injection and manually trigger injection.
+            //// Because Ninject doesn't create the membership provider, we need to explicitly inject dependencies.
+            //DIFactory.Kernel.Inject(Membership.Provider);
+
         }
     }
 }

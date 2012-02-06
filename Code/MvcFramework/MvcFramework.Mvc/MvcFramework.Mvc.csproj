@@ -211,8 +211,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ExitHttpsIfNotRequiredAttribute.cs" />
     <Compile Include="Helpers\PlaceHolderAtrribute.cs" />
     <Compile Include="Helpers\RequireHttpsNonLocalAttribute.cs" />
+    <Compile Include="Helpers\RetainHttpsAttribute.cs" />
     <Compile Include="Helpers\StaticHelper.cs" />
     <Compile Include="Mailers\IMailer.cs" />
     <Compile Include="Mailers\Mailer.cs" />
@@ -353,7 +355,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="README.jQuery.vsdoc.txt" />
     <Content Include="Scripts\AjaxLogin.js" />
     <Content Include="Scripts\conditional-validation.js" />
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />

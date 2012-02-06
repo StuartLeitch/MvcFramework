@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using Template.Helpers;
+using MvcFramework.Mvc.Helpers;
 
 namespace Template.Models
 {
